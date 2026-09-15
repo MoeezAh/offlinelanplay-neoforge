@@ -1,8 +1,6 @@
 pluginManagement {
     repositories {
-        maven { url = 'https://neoforged.net' }
         gradlePluginPortal()
-        mavenCentral()
     }
 }
 
@@ -10,8 +8,4 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
-rootProject.name = 'OfflineLanPlay-parent'
-
-include 'neoforge-1.21'
-include 'neoforge-26.1-26.1.2'
-include 'neoforge-26.2'
+rootProject.name = 'OfflineLanPlay-1204'

@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -20,7 +19,7 @@ public class OfflineLanPlay {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in
     // automatically.
-    public OfflineLanPlay(IEventBus modEventBus, ModContainer modContainer) {
+    public OfflineLanPlay(IEventBus modEventBus) {
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (OfflineMod) to respond
         // directly to events.
