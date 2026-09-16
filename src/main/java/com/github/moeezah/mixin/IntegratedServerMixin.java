@@ -19,8 +19,8 @@ public class IntegratedServerMixin {
         server.setUsesAuthentication(false);
 
         // Notify stuff
-        Component textMessage = Component.literal(
-                "§8[§cOffline LAN Play§8]§r Changed §n§6Online Mode§r to False §aSuccessfully§r");
+        Component textMessage = Component
+                .literal("§8[§cOffline LAN Play§8]§r §n§6Offline Mode§r has been §aEnabled§r");
 
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             player.sendSystemMessage(textMessage);
