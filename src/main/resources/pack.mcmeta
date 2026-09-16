@@ -1,6 +1,8 @@
 {
   "pack": {
-    "description": "offlinelanplay resources",
-    "pack_format": 22
+    "description": {
+      "text": "${mod_id} resources"
+    },
+    "pack_format": ${pack_format_number}
   }
 }
