@@ -1,53 +1,44 @@
 
 # Offline LAN Play
 
-This branch is for Minecraft 1.20.3 and 1.20.4.
+This branch is dedicated to Minecraft 1.20.2.
 
-Offline LAN Play is a NeoForge mod for Minecraft 1.20.3 and 1.20.4 that lets players join a local LAN world without regular online authentication. When the host opens a single-player world to LAN, the mod disables online-mode checks for that integrated server so trusted players on the same local network can connect more easily.
+This repository maintains separate branches for different Minecraft versions, and this branch is specifically for Minecraft 1.20.2. Offline LAN Play is a NeoForge mod for this version that disables the authentication check when a single-player world is opened to LAN. This lets trusted players on the same local network join without requiring Mojang account authentication.
 
-## What this mod does
+## What the mod does
 
-- Enables offline-style LAN play for single-player worlds
-- Disables authentication when a world is published to LAN
-- Sends an in-game message announcing that online mode was turned off
-- Keeps the change limited to the LAN server lifecycle and local network use
+- Hooks into the integrated server publish flow when you open a world to LAN
+- Calls `setUsesAuthentication(false)` on the local server
+- Sends an in-game chat message confirming that offline mode has been enabled
+- Keeps the change limited to LAN hosting for local play
 
 ## Important security note
 
-This mod is intended for trusted local networks only. Offline mode does not verify player identity, so a user can join with a custom username. Do not expose the LAN port outside your private network.
+This mod is intended for private, trusted local networks only. Offline mode does not verify player identity, so users can join with any username. Do not expose the LAN port to the internet or untrusted devices.
 
-## Supported versions for this branch
+## Supported version
 
-- Minecraft: 1.20.3 and 1.20.4
-- NeoForge: 20.4.251
+- Minecraft: 1.20.2
+- NeoForge: 20.2.93
 - Mod ID: `offlinelanplay`
-
-This repository may maintain separate branches for different Minecraft versions. Use the branch that matches your target version.
-
-## Install
-
-1. Install NeoForge for Minecraft 1.20.3 or 1.20.4.
-2. Build or download the mod jar for this branch.
-3. Place the jar in your instance's `mods` folder.
-4. Start the game and host a world as usual.
 
 ## How to use
 
-1. Open a single-player world.
-2. Press Escape and choose **Open to LAN**.
-3. Choose your LAN settings and start the world.
-4. Share the LAN port or server address with trusted players on your local network.
-5. Players can join from the multiplayer menu.
+1. Start a single-player world.
+2. Open the pause menu and choose **Open to LAN**.
+3. Configure the LAN world settings and start it.
+4. Share the LAN connection details with players on the same local network.
+5. Those players can join from the multiplayer menu.
 
-The mod does not create a dedicated public server or provide internet matchmaking. It only changes the LAN-integrated server behavior.
+The mod does not create a public server and is not meant for internet play.
 
 ## Build from source
 
 ### Requirements
 
-- Git
 - Java 17
-- NeoForge 20.4.251 compatible setup
+- Git
+- NeoForge toolchain configured by the Gradle project
 
 From the repository root, build the mod with:
 
@@ -55,24 +46,21 @@ From the repository root, build the mod with:
 .\gradlew.bat build
 ```
 
-On macOS/Linux, use:
+On macOS or Linux:
 
 ```bash
 ./gradlew build
 ```
 
-The compiled jar will be placed in the `build/libs` folder, typically as:
+The compiled jar is output to the module's `build/libs` folder.
 
-```text
-build/libs/offlinelanplay-neoforge-1.20.4-1.0.0.jar
-```
+## Installation
 
-To run the development client for this branch:
-
-```powershell
-.\gradlew.bat runClient
-```
+1. Build the mod or obtain the generated jar.
+2. Copy it into your Minecraft instance's `mods` folder.
+3. Launch the game with NeoForge installed.
+4. Host a world using the normal LAN flow.
 
 ## License
 
-This mod is currently marked as **All Rights Reserved** in the project metadata.
+This project currently declares **All Rights Reserved** in its metadata.
