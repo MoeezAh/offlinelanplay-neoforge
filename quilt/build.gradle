@@ -1,0 +1,60 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'org.quiltmc.loom' version '1.9-SNAPSHOT'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "${mod_id}-quilt-${minecraft_version}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "org.quiltmc:quilt-loader:${quilt_loader_version}"
+    
+    // Quilted Fabric API - provides Fabric API compatibility layer
+    // This mod does not use any QFAPI features, so it's optional
+    // modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}"
+}
+
+processResources {
+    var replaceProperties = [
+            mod_id                  : mod_id, 
+            mod_name                : mod_name, 
+            mod_license             : mod_license, 
+            mod_version             : mod_version,
+            mod_authors             : mod_authors, 
+            mod_description         : mod_description,
+            minecraft_version       : minecraft_version,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching('quilt.mod.json') {
+        expand replaceProperties + [project: project]
+    }
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
