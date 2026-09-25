@@ -3,10 +3,8 @@ package com.github.moeezah;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.level.GameType;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.bus.api.IEventBus;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -17,10 +15,11 @@ public class OfflineLanPlay {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public OfflineLanPlay(IEventBus modEventBus) {
-        modEventBus.addListener(this::onClientSetup);
+        // FMLCommonSetupEvent is fired on the mod event bus in Forge 1.20.x
+        modEventBus.addListener(this::onCommonSetup);
     }
 
-    public void onClientSetup(net.minecraftforge.event.lifecycle.FMLClientSetupEvent event) {
+    public void onCommonSetup(net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent event) {
         LOGGER.info("HELLO FROM CLIENT SETUP");
         LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
