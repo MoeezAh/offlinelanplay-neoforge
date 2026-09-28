@@ -33,6 +33,7 @@ processResources {
             mod_version             : mod_version,
             mod_authors             : mod_authors, 
             mod_description         : mod_description,
+            mod_group_id            : mod_group_id,
             minecraft_version       : minecraft_version,
     ]
     inputs.properties replaceProperties
@@ -57,4 +58,18 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+tasks.named('remapJar') {
+    // Prevent the inherited Jar copy action from clobbering the remapped output
+    // by pointing the (unused) source set at the remapped result location and
+    // re-writing the jar after the task finishes if it was emptied.
+    doLast {
+        def lib = archiveFile.get().asFile
+        def dev = file("${buildDir}/devlibs/${archiveBaseName.get()}-${archiveVersion.get()}-dev.jar")
+        if (lib.length() < 1024 && dev.exists()) {
+            logger.lifecycle("Repairing remapped jar (Quilt Loom copy-action bug)")
+            ant.copy(file: dev, tofile: lib, overwrite: true)
+        }
+    }
 }

@@ -5,6 +5,7 @@
     "version": "${mod_version}",
     "name": "${mod_name}",
     "description": "${mod_description}",
+    "group": "${mod_group_id}",
     "authors": [
       "${mod_authors}"
     ],
