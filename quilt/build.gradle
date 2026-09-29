@@ -15,14 +15,29 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+repositories {
+    maven {
+        name = "QuiltMC Maven"
+        url = "https://maven.quiltmc.org/repository/release/"
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.officialMojangMappings()
     modImplementation "org.quiltmc:quilt-loader:${quilt_loader_version}"
-    
-    // Quilted Fabric API - provides Fabric API compatibility layer
-    // This mod does not use any QFAPI features, so it's optional
-    // modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}"
+
+    // Quilt Standard Libraries (QSL / quilt_base) — REQUIRED at compile time,
+    // because the 'init' entrypoint on Quilt Loader must implement
+    // org.quiltmc.qsl.base.api.entrypoint.ModInitializer. At runtime QSL ships
+    // bundled inside Quilted Fabric API, so the built jar still works whether or
+    // not the user has QFAPI/QSL installed (the mod declares no hard dependency).
+    modImplementation "org.quiltmc.qsl.core:qsl_base:${qsl_version}"
+
+    // Quilted Fabric API (QFAPI) — provides the Fabric compatibility layer.
+    // This mod does not call any QFAPI features itself, so it is an OPTIONAL
+    // runtime dep; uncomment below to test against it in a dev environment:
+    // modLocalRuntime "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}"
 }
 
 processResources {
