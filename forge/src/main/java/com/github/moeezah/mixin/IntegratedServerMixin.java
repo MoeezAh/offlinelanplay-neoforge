@@ -1,9 +1,11 @@
 package com.github.moeezah.mixin;
 
+import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.mojang.logging.LogUtils;
 import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,12 +13,16 @@ import net.minecraft.world.level.GameType;
 
 @Mixin(IntegratedServer.class)
 public class IntegratedServerMixin {
-    @Inject(method = "publishServer", at = @At("HEAD"))
+    public static final Logger LOGGER = LogUtils.getLogger();
+    
+    @Inject(method = "publishServer", at = @At("HEAD"), cancellable = true)
     private void onPublishServer(GameType gameMode, boolean cheats, int port,
             CallbackInfoReturnable<Boolean> clr) {
         // Target the local class reference directly instead of forcing an object cast
         IntegratedServer server = (IntegratedServer) (Object) this;
         server.setUsesAuthentication(false);
+
+        LOGGER.info("Offline play enabled.");
 
         // Notify stuff
         Component textMessage = Component

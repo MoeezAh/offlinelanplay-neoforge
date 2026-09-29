@@ -9,11 +9,9 @@ version="${mod_version}"
 displayName="${mod_name}"
 logoFile="logo.png"
 displayURL="https://github.com/MoeezAh/offlinelanplay-neoforge/issues"
+credits = "${credits}" #optional
 authors="${mod_authors}"
 description='''${mod_description}'''
-
-[[mixins]]
-config="${mod_id}.mixins.json"
 
 [[dependencies.${mod_id}]]
 modId="forge"

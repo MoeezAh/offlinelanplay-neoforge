@@ -7,6 +7,10 @@ pluginManagement {
         maven { url = 'https://maven.minecraftforge.net/' }
         maven { url = 'https://maven.quiltmc.org/repository/release/' }
         maven { url = 'https://maven.quiltmc.org/repository/snapshot/' }
+        maven {
+            name = 'Sponge Snapshots'
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
     }
 }
 
