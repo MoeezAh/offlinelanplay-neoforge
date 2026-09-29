@@ -50,10 +50,11 @@ processResources {
             mod_description         : mod_description,
             mod_group_id            : mod_group_id,
             minecraft_version       : minecraft_version,
+            pack_format_number      : pack_format_number,
     ]
     inputs.properties replaceProperties
 
-    filesMatching('quilt.mod.json') {
+    filesMatching(['quilt.mod.json', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]
     }
 }

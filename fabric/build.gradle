@@ -34,10 +34,11 @@ processResources {
             mod_authors             : mod_authors, 
             mod_description         : mod_description,
             minecraft_version       : minecraft_version,
+            pack_format_number      : pack_format_number,
     ]
     inputs.properties replaceProperties
 
-    filesMatching('fabric.mod.json') {
+    filesMatching(['fabric.mod.json', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]
     }
 }
