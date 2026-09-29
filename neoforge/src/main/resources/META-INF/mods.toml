@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
 license="${mod_license}"
-logoFile="assets/offlinelanplay/logo.png"
+logoFile="logo.png"
 
 [[mods]]
 modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
-logoFile="assets/offlinelanplay/logo.png"
+logoFile="logo.png"
 displayURL="https://github.com/MoeezAh/offlinelanplay-neoforge/issues"
 authors="${mod_authors}"
 description='''${mod_description}'''

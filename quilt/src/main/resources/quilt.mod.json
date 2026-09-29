@@ -13,7 +13,7 @@
       "homepage": "https://github.com/MoeezAh/offlinelanplay-neoforge"
     },
     "license": "${mod_license}",
-    "icon": "assets/offlinelanplay/logo.png",
+    "icon": "assets/${mod_id}/logo.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
     "load_type": "always",
     "entrypoints": {

@@ -24,7 +24,7 @@ public class OfflineLanPlay {
         LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 
-    @net.minecraftforge.eventbus.api.SubscribeEvent
+    @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         LOGGER.info(MODID + ": Server starting.");
     }
