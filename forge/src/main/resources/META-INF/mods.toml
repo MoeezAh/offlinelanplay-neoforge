@@ -13,6 +13,12 @@ credits = "${mod_credits}" #optional
 authors="${mod_authors}"
 description='''${mod_description}'''
 
+# Register the mixin config with Forge's built-in Mixin integration.
+# Without this, a production jar never loads offlinelanplay.mixins.json
+# (in dev it only appeared to work because of the run-config property).
+[[mixins]]
+config="${mod_id}.mixins.json"
+
 [[dependencies.${mod_id}]]
 modId="forge"
 mandatory=true

@@ -40,7 +40,9 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'mixin.config', "{mod_id}.mixins.json"
+            // Extra mixin diagnostics in dev (exported classes land in run/classstore).
+            property 'mixin.debug.export', 'true'
+            property 'mixin.debug.verbose', 'true'
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
@@ -84,7 +86,7 @@ tasks.withType(ProcessResources).configureEach {
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', '*.mixins.json']) {
         expand replaceProperties + [project: project]
     }
 }

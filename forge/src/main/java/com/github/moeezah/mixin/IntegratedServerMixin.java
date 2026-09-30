@@ -1,11 +1,9 @@
 package com.github.moeezah.mixin;
 
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import com.mojang.logging.LogUtils;
 import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -23,7 +21,7 @@ public class IntegratedServerMixin {
 
         // Notify stuff
         Component textMessage = Component
-                .literal("§8[§cOffline LAN Play§8]§r §n§6Offline Mode§r has been §aEnabled§r");
+                .literal("\u00a78[\u00a7cOffline LAN Play\u00a78]\u00a7r \u00a7n\u00a76Offline Mode\u00a7r has been \u00a7aEnabled\u00a7r");
 
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             player.sendSystemMessage(textMessage);
