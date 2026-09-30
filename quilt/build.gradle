@@ -37,7 +37,7 @@ dependencies {
     // Quilted Fabric API (QFAPI) — provides the Fabric compatibility layer.
     // This mod does not call any QFAPI features itself, so it is an OPTIONAL
     // runtime dep; uncomment below to test against it in a dev environment:
-    // modLocalRuntime "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}"
+    modLocalRuntime "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${qfapi_version}"
 }
 
 processResources {

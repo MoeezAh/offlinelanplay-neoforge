@@ -1,5 +1,6 @@
 package com.github.moeezah.mixin;
 
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -9,9 +10,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 
+@ClientOnly  // Prevents the class from registering on dedicated servers
 @Mixin(IntegratedServer.class)
 public class IntegratedServerMixin {
-    @Inject(method = "publishServer", at = @At("HEAD"))
+    @Inject(method = "publishServer", at = @At("HEAD"), cancellable = true)
     private void onPublishServer(GameType gameMode, boolean cheats, int port,
             CallbackInfoReturnable<Boolean> clr) {
         // Target the local class reference directly instead of forcing an object cast
