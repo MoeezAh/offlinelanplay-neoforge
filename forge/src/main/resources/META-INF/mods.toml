@@ -9,7 +9,7 @@ version="${mod_version}"
 displayName="${mod_name}"
 logoFile="logo.png"
 displayURL="https://github.com/MoeezAh/offlinelanplay-neoforge/issues"
-credits = "${credits}" #optional
+credits = "${mod_credits}" #optional
 authors="${mod_authors}"
 description='''${mod_description}'''
 

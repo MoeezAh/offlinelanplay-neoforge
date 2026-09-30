@@ -13,16 +13,13 @@ import net.minecraft.world.level.GameType;
 
 @Mixin(IntegratedServer.class)
 public class IntegratedServerMixin {
-    public static final Logger LOGGER = LogUtils.getLogger();
-    
+
     @Inject(method = "publishServer", at = @At("HEAD"), cancellable = true)
     private void onPublishServer(GameType gameMode, boolean cheats, int port,
             CallbackInfoReturnable<Boolean> clr) {
         // Target the local class reference directly instead of forcing an object cast
         IntegratedServer server = (IntegratedServer) (Object) this;
         server.setUsesAuthentication(false);
-
-        LOGGER.info("Offline play enabled.");
 
         // Notify stuff
         Component textMessage = Component

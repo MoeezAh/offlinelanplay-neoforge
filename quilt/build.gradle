@@ -72,10 +72,6 @@ publishing {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
-
 tasks.named('remapJar') {
     // Prevent the inherited Jar copy action from clobbering the remapped output
     // by pointing the (unused) source set at the remapped result location and
